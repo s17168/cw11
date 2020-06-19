@@ -46,8 +46,24 @@ namespace cw11.Models
             doctors.Add(new Models.Doctor { IdDoctor = 1, FirstName = "Jan", LastName = "Nowak", Email = "jan.nowak@gmail.com"});
             doctors.Add(new Models.Doctor { IdDoctor = 2, FirstName = "Anna", LastName = "Sachs", Email = "anna.sa@gmail.com"});
 
+            var patients = new List<Patient>();
+            patients.Add(new Models.Patient { IdPatient = 101, FirstName = "Pam", LastName = "Beesely", Birthdate = new DateTime(1995, 3, 16)});
+            patients.Add(new Models.Patient { IdPatient = 102, FirstName = "Jim", LastName = "Halpert", Birthdate = new DateTime(1995, 3, 15)});
+
+            var medicamets = new List<Medicament>();
+            medicamets.Add(new Models.Medicament { IdMedicament = 10, Name = "Xylo", Description = "use wisely", Type = "gel"});
+            medicamets.Add(new Models.Medicament { IdMedicament = 11, Name = "Paracetamol", Description = "use wisely", Type = "pills"});
+            medicamets.Add(new Models.Medicament { IdMedicament = 12, Name = "Ibuprofen", Description = "use wisely", Type = "pills"});
+            medicamets.Add(new Models.Medicament { IdMedicament = 13, Name = "Strepsils", Description = "use wisely", Type = "pills"});
+
             modelBuilder.Entity<Doctor>()
                 .HasData(doctors);
+
+            modelBuilder.Entity<Patient>()
+                .HasData(patients);
+
+            modelBuilder.Entity<Medicament>()
+                .HasData(medicamets);
         }
 
 
