@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cw11.Models
 {
-    public class DoctorsDbContext : DbContext
+    public partial class DoctorsDbContext : DbContext
     {
         public DbSet<Medicament> Medicament { get; set; }
         public virtual DbSet<Doctor> Doctor { get; set; }
@@ -24,6 +24,18 @@ namespace cw11.Models
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PrescriptionMedicament>(entity =>
+            {
+                entity.HasKey(e => new { e.IdMedicament, e.IdPrescription })
+                    .HasName("Prescription_Medicament_pk");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
 
     }
