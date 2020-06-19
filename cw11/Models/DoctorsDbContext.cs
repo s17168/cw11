@@ -34,8 +34,22 @@ namespace cw11.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+
+            seedDatabaseWithSampleData(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        private void seedDatabaseWithSampleData(ModelBuilder modelBuilder)
+        {
+            var doctors = new List<Doctor>();
+            doctors.Add(new Models.Doctor { IdDoctor = 1, FirstName = "Jan", LastName = "Nowak", Email = "jan.nowak@gmail.com"});
+            doctors.Add(new Models.Doctor { IdDoctor = 2, FirstName = "Anna", LastName = "Sachs", Email = "anna.sa@gmail.com"});
+
+            modelBuilder.Entity<Doctor>()
+                .HasData(doctors);
+        }
+
 
 
     }
