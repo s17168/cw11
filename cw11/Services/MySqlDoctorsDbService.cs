@@ -23,7 +23,7 @@ namespace cw11.Services
 
         public Doctor GetDoctor(int id)
         {
-            throw new NotImplementedException();
+            return _context.Doctor.Where(d => d.IdDoctor == id).FirstOrDefault();
         }
 
         public IEnumerable<Doctor> GetDoctors()

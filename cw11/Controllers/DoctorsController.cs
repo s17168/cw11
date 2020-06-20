@@ -28,7 +28,7 @@ namespace cw11.Controllers
         [HttpGet("{id}")]
         public IActionResult GetDoctor(int id)
         {
-            return Ok();
+            return Ok(_dbService.GetDoctor(id));
         }
 
     }
