@@ -11,8 +11,8 @@ namespace cw11.Services
     {
         public IEnumerable<Doctor> GetDoctors();
         public Doctor GetDoctor(int id);
-        public void RemoveDoctor(int id);
-        public Doctor AddDoctor();
+        public void RemoveDoctor(int? id);
+        public Doctor AddDoctor(DoctorDto doctorDto);
         public Doctor UpdateDoctor(DoctorDto doctor);
     }
 }

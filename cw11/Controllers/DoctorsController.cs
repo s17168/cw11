@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using cw11.DTOs.Requests;
 using cw11.Models;
 using cw11.Services;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,55 @@ namespace cw11.Controllers
         [HttpGet("{id}")]
         public IActionResult GetDoctor(int id)
         {
-            return Ok(_dbService.GetDoctor(id));
+            var retrievedDoctor = _dbService.GetDoctor(id);
+            if (retrievedDoctor == null)
+            {
+                return BadRequest("Doktor o id " + id + " nie istnieje");
+            }
+            return Ok(retrievedDoctor);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateDoctor(DoctorDto doctorDto)
+        {
+            Doctor modifiedDoctor = null;
+            try 
+            {
+                modifiedDoctor = _dbService.UpdateDoctor(doctorDto);
+            } catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(modifiedDoctor);             
+        }
+
+        [HttpPost]
+        public IActionResult CreateDoctor(DoctorDto doctorDto)
+        {
+            Doctor createdDoctor = null;
+            try
+            {
+                createdDoctor = _dbService.AddDoctor(doctorDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok(createdDoctor);
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteDoctor(int? id)
+        {
+            try
+            {
+                 _dbService.RemoveDoctor(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok("Doctor " + id + " removed");
         }
 
     }
