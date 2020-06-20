@@ -56,6 +56,21 @@ namespace cw11.Models
             medicamets.Add(new Models.Medicament { IdMedicament = 12, Name = "Ibuprofen", Description = "use wisely", Type = "pills"});
             medicamets.Add(new Models.Medicament { IdMedicament = 13, Name = "Strepsils", Description = "use wisely", Type = "pills"});
 
+            var prescriptions = new List<Prescription>();
+            prescriptions.Add(new Models.Prescription { IdPrescription = 1, IdPatient = 101, IdDoctor = 1, Date = new DateTime(2020, 1, 1)});
+            prescriptions.Add(new Models.Prescription { IdPrescription = 2, IdPatient = 102, IdDoctor = 1, Date = new DateTime(2020, 1, 10)});
+            prescriptions.Add(new Models.Prescription { IdPrescription = 3, IdPatient = 102, IdDoctor = 3, Date = new DateTime(2020, 1, 12)});
+
+            var presMed = new List<PrescriptionMedicament>();
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 1, IdMedicament = 10, Dose = 2, Details = "no details"});
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 1, IdMedicament = 11, Dose = 2, Details = "no details"});
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 1, IdMedicament = 12, Dose = 2, Details = "no details"});
+            
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 2, IdMedicament = 12, Dose = 2, Details = "no details"});
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 2, IdMedicament = 13, Dose = 2, Details = "no details"});
+            
+            presMed.Add(new Models.PrescriptionMedicament { IdPrescription = 3, IdMedicament = 10, Dose = 1, Details = "no details"});
+
             modelBuilder.Entity<Doctor>()
                 .HasData(doctors);
 
@@ -64,6 +79,9 @@ namespace cw11.Models
 
             modelBuilder.Entity<Medicament>()
                 .HasData(medicamets);
+
+            modelBuilder.Entity<Prescription>()
+               .HasData(prescriptions);
         }
 
 
