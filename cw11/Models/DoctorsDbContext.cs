@@ -82,6 +82,9 @@ namespace cw11.Models
 
             modelBuilder.Entity<Prescription>()
                .HasData(prescriptions);
+
+            modelBuilder.Entity<PrescriptionMedicament>()
+               .HasData(presMed);
         }
 
 
